@@ -22,7 +22,7 @@ app.post('/webhook', (req, res) => {
 
 async function sendCommandToAdafruitIO(value) {
   try {
-    const response = await axios.post(WEBHOOK_URL, { value: value }, {
+    const response = await axios.post(WEBHOOK_URL,  value , {
       headers: {
         'Content-Type': 'application/json'
       }
