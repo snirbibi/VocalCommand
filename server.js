@@ -25,7 +25,7 @@ app.post('/webhook', (req, res) => {
 // Fonction pour envoyer la commande à Adafruit IO
 function sendCommandToAdafruitIO(command) {
   const url = 'https://io.adafruit.com/api/v2/snir/feeds/alarmeincendie/data'; // Remplacer YOUR_USERNAME
-  const key = 'aio_cXtc99D1H29Lx5AOhK71q3qsN9Nk'; // Remplacer YOUR_AIO_KEY
+  const key = 'aio_GGyr62dR8MlV480gQPJ6coTD7SGF'; // Remplacer YOUR_AIO_KEY
 
   axios.post(url, {
     value: command,
