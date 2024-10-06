@@ -22,9 +22,9 @@ app.post('/webhook', (req, res) => {
 
 async function sendCommandToAdafruitIO(value) {
   try {
-    const response = await axios.post(WEBHOOK_URL,  value , {
+    const response = await axios.post(WEBHOOK_URL, `value=${value}`, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
 
@@ -33,6 +33,7 @@ async function sendCommandToAdafruitIO(value) {
     console.error('Erreur lors de l\'envoi de la commande:', error.response?.data || error.message);
   }
 }
+
 
 app.listen(3000, () => {
   console.log('Serveur webhook démarré sur le port 3000');
