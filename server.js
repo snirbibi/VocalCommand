@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 // URL de votre webhook sur Adafruit IO
-const AIO_KEY     = process.env.AIO_KEY;  // Utilisation de la clé d'API depuis les variables d'environnement
+const AIO_KEY     = process.env.AIO_KEY;   // Utilisation de la clé d'API depuis les variables d'environnement
 //const WEBHOOK_URL = 'https://io.adafruit.com/api/v2/webhooks/feed/6F41S2DuMD2xh93q1oN37xbHioU7/raw'; 
 const AIO_USERNAME= 'snir';
 const TOPIC       = '${AIO_USERNAME}/feeds/alarmeincendie';
@@ -17,10 +17,10 @@ const client = mqtt.connect(`mqtts://${AIO_USERNAME}:${AIO_KEY}@io.adafruit.com`
 app.post('/webhook', (req, res) => {
   const command = req.body.queryResult.intent.displayName;
 
-  if (command === 'incendie') {
+  if (command === 'alerte incendie') {
     sendCommandToAdafruitIO('ON');
     res.json({ fulfillmentText: 'La LED est allumée.' });
-  } else if (command === 'arret incendie') {
+  } else if (command === 'stop incendie') {
     sendCommandToAdafruitIO('OFF');
     res.json({ fulfillmentText: 'La LED est éteinte.' });
   }
