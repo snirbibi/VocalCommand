@@ -22,6 +22,20 @@ app.post('/webhook', (req, res) => {
 
 async function sendCommandToAdafruitIO(value) {
   try {
+    const response = await axios.post(WEBHOOK_URL, value, {
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    });
+
+    console.log('Commande envoyée avec succès:', response.data);
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi de la commande:', error.response?.data || error.message);
+  }
+}
+// envoi "ON" ou "OFF"
+/*async function sendCommandToAdafruitIO(value) {
+  try {
     const response = await axios.post(WEBHOOK_URL, `value=${value}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -32,7 +46,7 @@ async function sendCommandToAdafruitIO(value) {
   } catch (error) {
     console.error('Erreur lors de l\'envoi de la commande:', error.response?.data || error.message);
   }
-}
+}*/
 
 
 app.listen(3000, () => {
