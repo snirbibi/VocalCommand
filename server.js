@@ -33,6 +33,7 @@ async function sendCommandToAdafruitIO(value) {
     console.error('Erreur lors de l\'envoi de la commande:', error.response?.data || error.message);
   }
 }
+
 // envoi "ON" ou "OFF"
 /*async function sendCommandToAdafruitIO(value) {
   try {
