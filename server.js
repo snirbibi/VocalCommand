@@ -9,11 +9,11 @@ app.use(express.json());
 app.post('/webhook', (req, res) => {
   const command = req.body.queryResult.intent.displayName;
 
-  if (command === 'Allume_LED') {
+  if (command === 'incendie') {
     // Appeler Adafruit IO pour envoyer la commande "ON" à l'ESP
     sendCommandToAdafruitIO('ON');
     res.json({ fulfillmentText: 'La LED est allumée.' });
-  } else if (command === 'Eteins_LED') {
+  } else if (command === 'arret incendie') {
     // Appeler Adafruit IO pour envoyer la commande "OFF" à l'ESP
     sendCommandToAdafruitIO('OFF');
     res.json({ fulfillmentText: 'La LED est éteinte.' });
@@ -24,8 +24,8 @@ app.post('/webhook', (req, res) => {
 
 // Fonction pour envoyer la commande à Adafruit IO
 function sendCommandToAdafruitIO(command) {
-  const url = 'https://io.adafruit.com/api/v2/YOUR_USERNAME/feeds/LED/data'; // Remplacer YOUR_USERNAME
-  const key = 'YOUR_AIO_KEY'; // Remplacer YOUR_AIO_KEY
+  const url = 'https://io.adafruit.com/api/v2/snir/feeds/alarmeincendie/data'; // Remplacer YOUR_USERNAME
+  const key = 'aio_lTAM64AAHPnwPLG9nR4XlVndjC6e'; // Remplacer YOUR_AIO_KEY
 
   axios.post(url, {
     value: command,
