@@ -19,10 +19,10 @@ const client = mqtt.connect(`mqtts://${AIO_USERNAME}:${AIO_KEY}@io.adafruit.com`
 app.post('/webhook', (req, res) => {
   const command = req.body.queryResult.intent.displayName;
 
-  if (command === 'alerte incendie') {
+  if (command === 'Alerte incendie') {
     sendCommandToAdafruitIO('ON');
     res.json({ fulfillmentText: 'La LED est allumée.' });
-  } else if (command === 'stop incendie') {
+  } else if (command === 'Stop incendie') {
     sendCommandToAdafruitIO('OFF');
     res.json({ fulfillmentText: 'La LED est éteinte.' });
   }
