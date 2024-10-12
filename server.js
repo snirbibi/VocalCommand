@@ -18,6 +18,7 @@ const TOPIC = `${AIO_USERNAME}/feeds/alarmeincendie`; // Utilisez des backticks 
 const client = mqtt.connect(`mqtts://${AIO_USERNAME}:${AIO_KEY}@io.adafruit.com`);
 
 app.post('/webhook', (req, res) => {
+  console.log(req.body);  // Ajoute ceci pour voir le contenu de la requête
   const command = req.body.queryResult.intent.displayName;
 
   if (command === 'Alerte incendie') {
@@ -28,6 +29,7 @@ app.post('/webhook', (req, res) => {
     res.json({ fulfillmentText: 'La LED est éteinte.' });
   }
 });
+
 
 // Envoyer des commandes "ON" ou "OFF" via MQTT
 function sendCommandToAdafruitIO(value) {
